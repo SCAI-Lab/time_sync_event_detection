@@ -1,0 +1,42 @@
+sensors:
+  - name: cos
+    file: /path/to/cos_acc.csv
+    columns: 
+      - time
+      - timestamp
+      - acc_x
+      - acc_y
+      - acc_z
+    model_name: LocalOutlierFactor
+    window_size: 100
+  - name: cor
+    file: /path/to/cos_acc.csv
+    columns: 
+      - time
+      - timestamp
+      - accX
+      - accY
+      - accZ
+    model_name: LocalOutlierFactor
+    window_size: 100
+  - name: mat
+    file: /path/to/mat.csv
+    columns: 
+      - time
+      - timestamp
+      - device1_value4
+      - device1_value5
+      - device1_value9
+    model_name: LocalOutlierFactor
+    window_size: 100
+  - name: viva_acc
+    file: /path/to/viva_hr.csv
+    columns: 
+      - time
+      - timestamp
+      - x
+      - y
+      - z
+    model_name: LocalOutlierFactor
+    window_size: 100
+plotting: true

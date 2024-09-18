@@ -1,0 +1,7 @@
+temp.txt
+ml_dl/
+../pycache/
+src/__pycache__
+src/detectors/__pycache__
+src/evaluation/__pycache__
+utils/__pycache__
