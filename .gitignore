@@ -5,3 +5,4 @@ src/__pycache__
 src/detectors/__pycache__
 src/evaluation/__pycache__
 utils/__pycache__
+utils/stream_sync2.py

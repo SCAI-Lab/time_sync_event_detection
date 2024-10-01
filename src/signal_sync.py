@@ -13,7 +13,8 @@ def synchronization(
         ref_name : str, 
         dfs : dict, 
         prev_frame : int, 
-        frame : int):
+        frame : int,
+        cur_sensor_name=None):
     
     ref = dfs[ref_name]
     ref_frame = ref.iloc[prev_frame : frame + 1]
@@ -39,15 +40,7 @@ def synchronization(
         df_start_time = df_frame['time'].iloc[0]
         df_end_time = df_frame['time'].iloc[-1]
 
-        # print(f"Processing sensor: {sensor_name}")
-        # print(f"df_frame index range: {prev_frame} to {frame}")
-        # print(f"df shape: {df.shape}")
-        # print(f"df_frame shape: {df_frame.shape}")
-        # print(f"df_start_time: {df_start_time}, df_end_time: {df_end_time}")
-        # print(f"Is df_start_time NaT? {pd.isna(df_start_time)}")
-
-        # print(f" === {sensor_name}: df_start_time: {df_start_time}; df_end_time: {df_end_time}")
-
+       
         df_start_timestamp = df_start_time.timestamp()
         df_end_timestamp = df_end_time.timestamp()
 
@@ -69,16 +62,9 @@ def synchronization(
 
         aligned_times = pd.to_datetime(aligned_timestamps, unit='s')
         aligned_times = aligned_times.dt.tz_localize('UTC').dt.tz_convert(tzinfo)
-        # print(f"========== {aligned_times.shape} || {df_frame.shape}  ref shape: {ref_frame.shape}, {df.loc[prev_frame : frame, 'time'].shape} || {prev_frame}, {frame + 1}")
-        # print(f"Indices of aligned_times: {aligned_times.index}")
-        # print(f"Indices of df slice: {df.loc[prev_frame:frame, 'time'].index}")
 
         df.loc[prev_frame : frame, 'time'] = aligned_times
         df.loc[prev_frame : frame, 'timestamp'] = aligned_timestamps
-        # df['time'] = pd.to_datetime(df['time'], unit='s')
-        # df['time'] = df['time'].dt.tz_localize('UTC').dt.tz_convert(tzinfo)
-        # print(f"Dtype of corrected_time: {df['time'].dtype}")
-        # print(f"Dtype of corrected_time: {aligned_times.dtype}")
-
+        
     prev_frame = frame
     return dfs, prev_frame

@@ -1,9 +1,19 @@
+import sys
 import os
 
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import random
+from datetime import datetime, timedelta
+import time
+import pytz
 
 import gzip
 import shutil
+
+MYTZ = "Europe/Zurich"
+tzinfo = pytz.timezone(MYTZ)
 
 def is_gz_file(filepath):
     # Check if the file has a .gz extension

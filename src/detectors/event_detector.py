@@ -7,17 +7,12 @@ def get_detector(model_name : str):
     else: return detector_sk
 
 
-
 def detector_sk(window, model):
     """
     detector for using sklearn model
     """
-    # print(f" *** window: \n {window}")
     features = pd.DataFrame(list(window))
     features = features.drop(columns=['time', 'timestamp'], errors='ignore')
-    # model.fit(features)
-    # latest_data = features[-1].reshape(1, -1)
-    # score = model.decision_function(latest_data)[0]
     anomaly_scores = model.fit_predict(features)
     anomaly_scores = (anomaly_scores == -1).astype(int)
     

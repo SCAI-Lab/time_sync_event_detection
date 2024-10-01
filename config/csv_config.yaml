@@ -8,7 +8,10 @@ sensors:
       - acc_y
       - acc_z
     model_name: LocalOutlierFactor
-    window_size: 100
+    parameters:
+      n_neighbors: 55
+      contamination: 0.005
+    window_size: 150
   - name: cor
     file: /path/to/cos_acc.csv
     columns: 
@@ -18,7 +21,10 @@ sensors:
       - accY
       - accZ
     model_name: LocalOutlierFactor
-    window_size: 100
+    parameters:
+      n_neighbors: 45
+      contamination: 0.004
+    window_size: 150
   - name: mat
     file: /path/to/mat.csv
     columns: 
@@ -28,15 +34,21 @@ sensors:
       - device1_value5
       - device1_value9
     model_name: LocalOutlierFactor
-    window_size: 100
-  - name: viva_acc
-    file: /path/to/viva_hr.csv
-    columns: 
-      - time
-      - timestamp
-      - x
-      - y
-      - z
-    model_name: LocalOutlierFactor
-    window_size: 100
+    parameters:
+      n_neighbors: 35
+      contamination: 0.02
+    window_size: 150
+  # - name: viva_acc
+  #   file: /path/to/viva_hr.csv
+  #   columns: 
+  #     - time
+  #     - timestamp
+  #     - x
+  #     - y
+  #     - z
+  #   model_name: LocalOutlierFactor
+  #   parameters:
+  #     n_neighbors: 35
+  #     contamination: 0.01
+  #   window_size: 100
 plotting: true

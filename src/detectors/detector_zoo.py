@@ -14,12 +14,13 @@ from nixtla import NixtlaClient
 
 def get_model(sensor_config):
     model_name = sensor_config['model_name']
+    params = sensor_config['parameters']
     if model_name == 'IsolationForest':
-        model = IsolationForest(contamination=0.0001, random_state=42)
+        model = IsolationForest(**params)
     elif model_name == 'OneClassSVM':
-        model = svm.OneClassSVM(nu=0.0001, kernel="rbf", gamma=0.1)
+        model = svm.OneClassSVM(**params)
     elif model_name == 'LocalOutlierFactor':
-        model = LocalOutlierFactor(n_neighbors=35, contamination=0.05)
+        model = LocalOutlierFactor(**params)
     elif model_name == 'SGDOneClassSVM':
         model = make_pipeline(
             Nystroem(gamma=0.1, random_state=42, n_components=100),
